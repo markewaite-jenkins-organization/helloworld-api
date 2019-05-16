@@ -7,7 +7,7 @@ pipeline {
         branch 'development'
       }
       steps {
-        echo 'Build Step in Build Stage'
+        echo 'Build step in build stage'
         writeFile file: "application.sh", text: "echo Built ${BUILD_ID} of ${JOB_NAME}"
         archiveArtifacts 'application.sh'
         gateProducesArtifact file: 'application.sh', label: 'Dummy artifact to be consumed by Deploy (master branch) gate'
