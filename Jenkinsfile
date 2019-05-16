@@ -7,7 +7,7 @@ pipeline {
         branch 'development'
       }
       steps {
-        echo 'build'
+        echo 'Build Step in Build Stage'
         writeFile file: "application.sh", text: "echo Built ${BUILD_ID} of ${JOB_NAME}"
         archiveArtifacts 'application.sh'
         gateProducesArtifact file: 'application.sh', label: 'Dummy artifact to be consumed by Deploy (master branch) gate'
@@ -30,6 +30,7 @@ pipeline {
         branch 'master'
       }
       steps {
+        echo "Deploy step in Deploy stage"
         copyArtifacts projectName: '../helloworld-api/development'
         gateConsumesArtifact file: 'application.sh'
       }
